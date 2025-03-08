@@ -11,6 +11,8 @@ import org.springframework.test.context.TestPropertySource;
 
 import java.time.LocalDateTime;
 
+import java.util.List;
+
 import static org.junit.jupiter.api.Assertions.*;
 
 
@@ -39,5 +41,35 @@ class ItemRepositoryTest {
         System.out.println(savedItem.toString());
 
     }
+
+    // 아이템 리스트 생성
+    public void createItemList(){
+        for(int i = 1; i <= 10; i += 1){
+            Item item = new Item();
+
+            item.setItemNm("테스트 상품" + i);
+            item.setPrice(5500);
+            item.setItemDetail("상품 상세 설명 입니다");
+            item.setItemSellStatus(ItemSellStatus.SELL);
+            item.setStockNumber(55); // 상품 재고 수량
+            item.setRegTime(LocalDateTime.now());
+            item.setUpdateTime(LocalDateTime.now());
+
+            Item savedItem = itemRepository.save(item);
+        }
+    }
+
+    @Test
+    @DisplayName("상품명 조회 테스트")
+    public void findByItemNmTest(){
+        this.createItemList();
+        List<Item> itemList = itemRepository.findByItemNm("테스트 상품2");
+
+        for(Item item : itemList){
+            System.out.println(item.toString());
+        }
+
+    }
+
 
 }
