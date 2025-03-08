@@ -98,6 +98,20 @@ class ItemRepositoryTest {
 
     }
 
+    @Test
+    @DisplayName("가격 내림차순 테스트")
+    public void findByPriceLessThanOrderByPriceDesc(){
+        this.createItemList();
+
+        List<Item> itemList = itemRepository.findByPriceLessThanOrderByPriceDesc(5505);
+
+        for(Item item : itemList){
+            System.out.println(item.toString());
+        }
+
+
+    }
+
 
 
 
