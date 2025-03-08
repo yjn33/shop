@@ -48,8 +48,8 @@ class ItemRepositoryTest {
             Item item = new Item();
 
             item.setItemNm("테스트 상품" + i);
-            item.setPrice(5500);
-            item.setItemDetail("상품 상세 설명 입니다");
+            item.setPrice(5500 + i);
+            item.setItemDetail("상품상세설명" + i);
             item.setItemSellStatus(ItemSellStatus.SELL);
             item.setStockNumber(55); // 상품 재고 수량
             item.setRegTime(LocalDateTime.now());
@@ -70,6 +70,20 @@ class ItemRepositoryTest {
         }
 
     }
+
+
+    @Test
+    @DisplayName("상품명, 상품상세설명 OR 테스트")
+    public void findByItemNmOrItemDetailTest(){
+        this.createItemList();
+        List<Item> itemList = itemRepository.findByItemNmOrItemDetail("테스트 상품1", "상품상세설명6");
+
+        for(Item item : itemList){
+            System.out.println(item.toString());
+        }
+
+    }
+
 
 
 }
