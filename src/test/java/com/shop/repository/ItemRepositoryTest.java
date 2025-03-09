@@ -113,6 +113,18 @@ class ItemRepositoryTest {
     }
 
 
+    @Test
+    @DisplayName("@Query Annotaion을 사용하여 상품 조회 테스트")
+    public void findByItemDetailTest(){
+        this.createItemList();
+        List<Item> itemList = itemRepository.findByItemDetail("상품상세설명1");
+
+        for(Item item : itemList){
+            System.out.println(item.toString());
+        }
+
+    }
+
 
 
 }
